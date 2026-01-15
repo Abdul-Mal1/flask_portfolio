@@ -1,0 +1,180 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<section id="home" class="hero">
+  <div class="container">
+    <p class="badge">Open to opportunities</p>
+    <h1>Hi, I’m <span class="accent">Abdul Zazai</span>.</h1>
+    <h2 class="subtitle">Python Developer • Full-Stack (Flask) • (Your Role)</h2>
+    <p class="lead">
+      I build clean, fast, mobile-friendly web apps. This website is built with Python (Flask) and deployed online.
+    </p>
+
+    <div class="hero-actions">
+      <a class="btn" href="#projects">View Projects</a>
+      <a class="btn ghost" href="#resume">Download Resume</a>
+    </div>
+
+    <div class="quick-links">
+      <a href="https://github.com/YOUR_GITHUB" target="_blank" rel="noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/YOUR_LINKEDIN" target="_blank" rel="noreferrer">LinkedIn</a>
+      <a href="mailto:Abdul.zazai13@email.com">Email</a>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="section">
+  <div class="container">
+    <h3>About</h3>
+    <p>
+      I am a motivated developer with a strong interest in building practical, user-focused web applications. I enjoy working with Python and Flask to create clean, reliable back-end systems and simple, responsive front-end interfaces. I’m continuously learning and improving my skills by building real projects from start to finish. I value clear communication, problem-solving, and writing code that is easy to understand and maintain. I’m currently seeking entry-level or junior developer roles where I can grow, contribute, and learn from experienced teams.
+    </p>
+
+    <div class="grid-2">
+      <div class="card">
+        <h4>Skills</h4>
+        <ul class="tags">
+          <li>Python</li><li>Flask</li><li>HTML</li><li>CSS</li><li>Git/GitHub</li>
+          <li>SQL (SQLite)</li><li>REST APIs</li><li>Deployment (Render)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h4>What I bring</h4>
+        <ul class="list">
+          <li>Clean UI + responsive layouts</li>
+          <li>Back-end development with Python</li>
+          <li>Real deployment + GitHub repo</li>
+          <li>Strong debugging + problem solving</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="section alt">
+  <div class="container">
+    <h3>Projects</h3>
+    <p class="muted">Replace these cards with your real projects and links.</p>
+
+    <div class="grid-3">
+      <article class="card project">
+        <h4>Coffee Shop Web App</h4>
+        <p>Mobile-responsive coffee shop with cart, checkout flow, and product visuals.</p>
+        <div class="project-links">
+          <a class="link" href="https://github.com/YOUR_GITHUB/coffeeapp" target="_blank" rel="noreferrer">Code</a>
+          <a class="link" href="#" target="_blank" rel="noreferrer">Live</a>
+        </div>
+        <ul class="mini">
+          <li>Responsive UI</li><li>Cart</li><li>Payments</li>
+        </ul>
+      </article>
+
+      <article class="card project">
+        <h4>Blog Website</h4>
+        <p>Simple blog with posts, categories, and modern layout.</p>
+        <div class="project-links">
+          <a class="link" href="https://github.com/YOUR_GITHUB/blog" target="_blank" rel="noreferrer">Code</a>
+          <a class="link" href="#" target="_blank" rel="noreferrer">Live</a>
+        </div>
+        <ul class="mini">
+          <li>CRUD</li><li>Auth</li><li>SEO</li>
+        </ul>
+      </article>
+
+      <article class="card project">
+        <h4>Portfolio (This Website)</h4>
+        <p>Python Flask portfolio with contact form stored in a database.</p>
+        <div class="project-links">
+          <a class="link" href="https://github.com/YOUR_GITHUB/portfolio" target="_blank" rel="noreferrer">Code</a>
+          <a class="link" href="#" target="_blank" rel="noreferrer">Live</a>
+        </div>
+        <ul class="mini">
+          <li>Flask</li><li>SQLite</li><li>Deployed</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="resume" class="section">
+  <div class="container">
+    <h3>Resume</h3>
+    <p class="muted">
+      Add your resume file as <code>static/assets/Resume.pdf</code>.
+    </p>
+    <div class="card resume">
+      <div>
+        <h4>Download Resume</h4>
+        <p>One click download. Works on desktop and mobile.</p>
+      </div>
+      <a class="btn" href="{{ url_for('resume') }}">Download PDF</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section alt">
+  <div style="position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden;">
+    <label>Leave this empty
+      <input type="text" name="website" tabindex="-1" autocomplete="off">
+    </label>
+  </div>  
+  <div class="container">
+    <h3>Contact</h3>
+    <p class="muted">This form is powered by Python (Flask) and saves messages to a database.</p>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="alerts">
+          {% for category, msg in messages %}
+            <div class="alert {{ category }}">{{ msg }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <div class="grid-2">
+      <div class="card">
+        <h4>Let’s talk</h4>
+        <p>
+          Email: <a href="mailto:your@email.com">your@email.com</a><br/>
+          LinkedIn: <a href="https://www.linkedin.com/in/YOUR_LINKEDIN" target="_blank" rel="noreferrer">YOUR_LINKEDIN</a><br/>
+          GitHub: <a href="https://github.com/YOUR_GITHUB" target="_blank" rel="noreferrer">YOUR_GITHUB</a>
+        </p>
+
+        <div class="small">
+          Tip: after deploying, put the live link on your resume + LinkedIn.
+        </div>
+      </div>
+
+      <form class="card form" action="{{ url_for('contact') }}" method="POST">
+        <label>
+          Name
+          <input type="text" name="name" placeholder="Your name" required>
+        </label>
+
+        <label>
+          Email
+          <input type="email" name="email" placeholder="you@email.com" required>
+        </label>
+
+        <label>
+          Subject (optional)
+          <input type="text" name="subject" placeholder="Job opportunity / question">
+        </label>
+
+        <label>
+          Message
+          <textarea name="message" rows="5" placeholder="Write your message..." required></textarea>
+        </label>
+
+        <button class="btn" type="submit">Send Message</button>
+        <p class="muted tiny">
+          Messages are stored in SQLite (app.db). Optional admin endpoint exists for viewing them.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

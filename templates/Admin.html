@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block content %}
+<section class="section">
+  <div class="container">
+    <h3>Admin • Messages</h3>
+    <p class="muted">Latest 200 messages</p>
+
+    <div class="card" style="overflow:auto;">
+      <table style="width:100%; border-collapse: collapse;">
+        <thead>
+          <tr>
+            <th style="text-align:left; padding:10px; border-bottom:1px solid var(--border);">Time</th>
+            <th style="text-align:left; padding:10px; border-bottom:1px solid var(--border);">Name</th>
+            <th style="text-align:left; padding:10px; border-bottom:1px solid var(--border);">Email</th>
+            <th style="text-align:left; padding:10px; border-bottom:1px solid var(--border);">Subject</th>
+            <th style="text-align:left; padding:10px; border-bottom:1px solid var(--border);">Message</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for m in messages %}
+          <tr>
+            <td style="vertical-align:top; padding:10px; border-bottom:1px solid var(--border); white-space:nowrap;">
+              {{ m.created_at }}
+            </td>
+            <td style="vertical-align:top; padding:10px; border-bottom:1px solid var(--border);">
+              {{ m.name }}
+            </td>
+            <td style="vertical-align:top; padding:10px; border-bottom:1px solid var(--border);">
+              <a class="link" href="mailto:{{ m.email }}">{{ m.email }}</a>
+            </td>
+            <td style="vertical-align:top; padding:10px; border-bottom:1px solid var(--border);">
+              {{ m.subject }}
+            </td>
+            <td style="vertical-align:top; padding:10px; border-bottom:1px solid var(--border);">
+              {{ m.message }}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <p class="muted tiny" style="margin-top:10px;">
+      Tip: protect this page using ADMIN_TOKEN (recommended).
+    </p>
+  </div>
+</section>
+{% endblock %}
